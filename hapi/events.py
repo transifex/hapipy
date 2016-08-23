@@ -14,8 +14,8 @@ class EventsClient(BaseClient):
         return '/v1/%s' % subpath
 
     def create_event(self, portal_id, event_id, email_address, **options):
-        subpath = 'event?_n=%s&_a=%s&email_address=%s' % (event_id, portal_id,
-                                                          email_address)
+        subpath = 'event?_n=%s&_a=%s&email=%s' % (event_id, portal_id,
+                                                  email_address)
         return self._call(
             subpath=None,
             url=self._get_path(subpath),
