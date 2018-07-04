@@ -206,4 +206,4 @@ class BaseClient(object):
 
     def _call(self, subpath, params=None, method='GET', data=None, doseq=False, query='', **options):
         result = self._call_raw(subpath, params=params, method=method, data=data, doseq=doseq, query=query, retried=False, **options)
-        return self._digest_result(result.body)
+        return self._digest_result(result)
