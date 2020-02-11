@@ -52,3 +52,22 @@ class ContactsClient(BaseClient):
                 data=data,
                 **options
             )
+
+    def delete_contact(self, email_address, api_key):
+        """ Delete a contact from hubspot.
+
+            :param string email_address: the email of the user that will be
+            deleted.
+            :param string api_key: the api key used on Hubspot.
+            :raises HapiNotFound: if contact is not found on Hubspot.
+        """
+        contact = self.get_contact_by_email(email_address, api_key)
+        if contact:
+            subpath = '/contacts/v1/contact/vid/%s?hapikey=%s' % (
+                contact['vid'], api_key
+            )
+            return self._call(
+                subpath=None,
+                url=subpath,
+                method='DELETE'
+            )
